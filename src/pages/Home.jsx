@@ -45,7 +45,7 @@ const Home = () => {
               <p className='w-[557px] h-[45px] text-[#727272] text-[14px] mt-2 mb-[55px]'>
                 We are an online plant shop offering a wide range of cheap and trendy plants. Use our plants to create an unique Urban Jungle. Order your favorite plants!
               </p>
-              <Button variant="contained" color="success" className='mt-[55px]'>
+              <Button variant="contained" sx={{backgroundColor: '#00C951',}} className='mt-[55px]'>
                 <p>SHOP NOW</p>
               </Button>
             </div>
@@ -63,7 +63,7 @@ const Home = () => {
               <p className='w-[557px] h-[45px] text-[#727272] text-[14px] mt-2 mb-[55px]'>
                 We are an online plant shop offering a wide range of cheap and trendy plants. Use our plants to create an unique Urban Jungle. Order your favorite plants!
               </p>
-              <Button variant="contained" color="success" className='mt-[55px]'>
+              <Button variant="contained" sx={{backgroundColor: '#00C951',}} className='mt-[55px]'>
                 <p>SHOP NOW</p>
               </Button>
             </div>
@@ -81,7 +81,7 @@ const Home = () => {
               <p className='w-[557px] h-[45px] text-[#727272] text-[14px] mt-2 mb-[55px]'>
                 We are an online plant shop offering a wide range of cheap and trendy plants. Use our plants to create an unique Urban Jungle. Order your favorite plants!
               </p>
-              <Button variant="contained" color="success" className='mt-[55px]'>
+              <Button variant="contained" sx={{backgroundColor: '#00C951',}} className='mt-[55px]'>
                 <p>SHOP NOW</p>
               </Button>
             </div>
@@ -98,7 +98,9 @@ const Home = () => {
         </div>
       </div>
           <div className='container max-w-[1216px] m-auto mt-10'>
-          <Category />
+            <div>
+              <Category />
+            </div>
           </div>
       <section className='container max-w-[1216px] m-auto mt-10'>
           <div className='flex justify-between'>
@@ -113,7 +115,7 @@ const Home = () => {
               <div className='w-[50%] flex items-end flex-col gap-3'>
                 <h2 className='font-bold text-end'>SUMMER CACTUS <br /> & SUCCULENTS</h2>
                 <p className=''>We are an online plant shop offering a wide range of cheap and trendy plants</p>
-                <Button variant="contained" color="success" className='w-[160px]'>
+                <Button variant="contained" sx={{backgroundColor: '#00C951',}} className='w-[160px]'>
                 <p>Find more <FontAwesomeIcon icon={faArrowRight} /></p>
               </Button>
               </div>
@@ -129,7 +131,7 @@ const Home = () => {
               <div className='w-[50%] flex items-end flex-col gap-3'>
                 <h2 className='font-bold text-end'>SUMMER CACTUS <br /> & SUCCULENTS</h2>
                 <p className=''>We are an online plant shop offering a wide range of cheap and trendy plants</p>
-                <Button variant="contained" color="success" className='w-[160px]'>
+                <Button variant="contained" sx={{backgroundColor: '#00C951',}} className='w-[160px]'>
                 <p>Find more <FontAwesomeIcon icon={faArrowRight} /></p>
               </Button>
               </div>
@@ -203,7 +205,7 @@ const Home = () => {
             <h2 className='text-[18px] font-bold'>Would you like to join newsletters?</h2>
             <div className='w-[354px] h-10'>
               <input type="email" placeholder='enter your email address...' className='w-[265px] h-10 border rounded-bl rounded-tl px-3 py-1'/>
-              <Button variant="contained" color="success" className='mt-[55px] w-[85px] h-10'>
+              <Button variant="contained" sx={{backgroundColor: '#00C951',}} className='mt-[55px] w-[85px] h-10'>
                 <p>Join</p>
               </Button>
             </div>
@@ -322,7 +324,8 @@ const Home = () => {
             </li>
           </ul>
         </div>
-        <h2 className='text-center mt-5 text-[14px] text-[#3D3D3D]'>© 2021 GreenShop. All Rights Reserved.</h2>
+        <hr  className='mt-5 text-green-500'/>
+        <h2 className='text-center text-[14px] text-[#3D3D3D]'>© 2021 GreenShop. All Rights Reserved.</h2>
       </footer>
     </Typography>
   );

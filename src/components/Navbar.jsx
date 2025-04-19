@@ -23,7 +23,7 @@ const Navbar = ({ toggleColorMode, mode }) => {
     <div className='container max-w-[1216px] m-auto flex justify-between items-center border-b border-[#46A35880] h-[53px]'>
         <div className='flex items-center'>
             <img src={Icon} alt="Icon" className='w-[35px] h-[35px]'/>
-            <p className='text-2xl font-bold text-[#46A358]'>GREENSHOP</p>
+            <p className='text-2xl font-bold text-green-500'>GREENSHOP</p>
         </div>
        <ul className='flex justify-center items-center'>
         <li className='flex justify-center items-center'>
@@ -61,11 +61,11 @@ const Navbar = ({ toggleColorMode, mode }) => {
                 </IconButton>
             </li>
             <li>
-            <Button variant="contained" color="success" className='flex items-center gap-1'>
+            <Button variant="contained" sx={{backgroundColor: '#00C951',}} className='flex items-center gap-1'>
             <FontAwesomeIcon icon={faRightFromBracket} /> 
-            <p>
-            Login
-            </p>
+                <p>
+                  Login
+                  </p>
             </Button>
             </li>
        </ul>
