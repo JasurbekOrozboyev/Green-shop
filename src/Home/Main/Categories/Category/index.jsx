@@ -54,6 +54,24 @@ const Category = () => {
                 Filter
             </Button>
         </div>
+        <div className="w-full mt-11 ">
+            <h2 className="font-bold text-[18px]">Size</h2>
+            <ul className="flex flex-col gap-3">
+                <li className="flex justify-between items-center">
+                    <p>Samll</p>
+                    <p>(119)</p>
+                </li>
+                <li className="flex justify-between items-center">
+                    <p>Medium</p>
+                    <p>(86)</p>
+                </li>
+                <li className="flex justify-between items-center">
+                    <p>Large</p>
+                    <p>(78)</p>
+                </li>
+                
+            </ul>
+        </div>
         <div className="rounded mt-5 p-2 bg-gradient-to-b from-[#46A3581A] to-[#46A35808]">
             <h2 className="text-[51px] text-center font-medium text-[#46A358]">Super Sale</h2>
             <h2 className="text-[23px] text-center ">UP TO 75% OFF</h2>
