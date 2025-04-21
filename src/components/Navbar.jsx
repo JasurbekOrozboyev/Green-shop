@@ -10,11 +10,10 @@ import Icon from '../images/icon/Vector.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import SignIn from '../Auth/Sign_in/index';
-import SignUp from '../Auth/Sign_up/index';
 
 const Navbar = ({ toggleColorMode, mode }) => {
   const [openModal, setOpenModal] = useState(false);
-  const [authType, setAuthType] = useState('login'); // 'login' yoki 'register'
+  const [authType, setAuthType] = useState('login'); 
 
   const closeModal = () => setOpenModal(false);
 
@@ -75,11 +74,9 @@ const Navbar = ({ toggleColorMode, mode }) => {
         </ul>
       </div>
 
-      {/* Modal */}
       {openModal && (
         <div className="fixed inset-0 bg-blur-xs bg-opacity-40 flex items-center justify-center z-50">
           <div className="relative bg-white rounded-lg p-6 shadow-lg max-w-sm w-full">
-            {/* Close button */}
             <button
               className="absolute top-2 right-3 text-xl text-gray-600 hover:text-red-500"
               onClick={closeModal}
@@ -87,7 +84,6 @@ const Navbar = ({ toggleColorMode, mode }) => {
               ✕
             </button>
 
-            {/* Toggle */}
             <div className="flex justify-center mb-4 gap-4">
               <button
                 className={`px-4 py-1 rounded ${authType === 'login' ? 'bg-green-500 text-white' : 'bg-gray-200'}`}
