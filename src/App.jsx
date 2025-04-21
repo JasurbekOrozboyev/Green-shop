@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/Blog';
+import SignIn from './Auth/Sign_in';
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<About />} />
+          <Route path='/signin' element={<SignIn/>}/>
         </Routes>
       </Router>
     </ThemeProvider>

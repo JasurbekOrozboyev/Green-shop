@@ -28,10 +28,6 @@ const Category = () => {
     getFlowersData();
   }, [])
 
-
-
-  console.log(data);
-
   return (
     <div className='container max-w-[1216px] m-auto overflow-hidden pt-2'>
      <div className="flex justify-between gap-[50px]">
