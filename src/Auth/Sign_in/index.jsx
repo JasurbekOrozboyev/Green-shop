@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function SignInUp({ closeModal }) {
+  const [error, setError] = useState('');
   const [activeTab, setActiveTab] = useState('login');
   const [form, setForm] = useState({ name: '', surname: '', email: '', password: '', confirmPassword: ''});
   const [loading, setLoading] = useState(false);
@@ -96,6 +97,9 @@ function SignInUp({ closeModal }) {
           <p className="text-right text-sm text-green-600 hover:underline cursor-pointer">Parolni unutdingizmi?</p>)}
         <button type="button" onClick={closeModal} className="absolute top-2 right-3 text-gray-500  text-[24px]">
         </button>
+        {error && (
+        <p className="text-red-500 text-center text-sm">{error}</p>
+          )}
       </form>
     </div>
   );

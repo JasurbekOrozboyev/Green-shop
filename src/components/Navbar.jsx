@@ -58,11 +58,7 @@ const Navbar = ({ toggleColorMode, mode }) => {
             </IconButton>
           </li>
           <li>
-            <Button
-              variant="contained"
-              sx={{ backgroundColor: '#00C951' }}
-              className="flex items-center gap-1"
-              onClick={() => {
+            <Button variant="contained" sx={{ backgroundColor: '#00C951' }} className="flex items-center gap-1" onClick={() => {
                 setOpenModal(true);
                 setAuthType('login');
               }}
@@ -77,24 +73,14 @@ const Navbar = ({ toggleColorMode, mode }) => {
       {openModal && (
         <div className="fixed inset-0 bg-blur-xs bg-opacity-40 flex items-center justify-center z-50">
           <div className="relative bg-white rounded-lg p-6 shadow-lg max-w-sm w-full">
-            <button
-              className="absolute top-2 right-3 text-xl text-gray-600 hover:text-red-500"
-              onClick={closeModal}
-            >
+            <button className="absolute top-2 right-3 text-xl text-gray-600 hover:text-red-500" onClick={closeModal}>
               ✕
             </button>
-
             <div className="flex justify-center mb-4 gap-4">
-              <button
-                className={`px-4 py-1 rounded ${authType === 'login' ? 'bg-green-500 text-white' : 'bg-gray-200'}`}
-                onClick={() => setAuthType('login')}
-              >
+              <button className={`px-4 py-1 rounded ${authType === 'login' ? 'bg-green-500 text-white' : 'bg-gray-200'}`} onClick={() => setAuthType('login')}>
                 Login
               </button>
-              <button
-                className={`px-4 py-1 rounded ${authType === 'register' ? 'bg-green-500 text-white' : 'bg-gray-200'}`}
-                onClick={() => setAuthType('register')}
-              >
+              <button className={`px-4 py-1 rounded ${authType === 'register' ? 'bg-green-500 text-white' : 'bg-gray-200'}`} onClick={() => setAuthType('register')}>
                 SignUp
               </button>
             </div>
