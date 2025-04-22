@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Link from './link';
 
 function SignInUp({ closeModal }) {
   const [error, setError] = useState('');
@@ -96,10 +97,12 @@ function SignInUp({ closeModal }) {
         {activeTab === 'login' && (
           <p className="text-right text-sm text-green-600 hover:underline cursor-pointer">Parolni unutdingizmi?</p>)}
         <button type="button" onClick={closeModal} className="absolute top-2 right-3 text-gray-500  text-[24px]">
+          x
         </button>
         {error && (
         <p className="text-red-500 text-center text-sm">{error}</p>
           )}
+        <Link />
       </form>
     </div>
   );
