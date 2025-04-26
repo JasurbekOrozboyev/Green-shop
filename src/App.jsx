@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/Blog';
@@ -19,6 +19,8 @@ function App() {
     [mode]
   );
 
+  const isAuthenticated = localStorage.getItem('token');
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -26,8 +28,13 @@ function App() {
         <Navbar toggleColorMode={toggleColorMode} mode={mode} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<About />} />
-          <Route path='/signin' element={<SignIn/>}/>
+          <Route
+            path="/blog"
+            element={
+              isAuthenticated ? <About /> : <Navigate to="/signin" replace />
+            }
+          />
+          <Route path="/signin" element={<SignIn />} />
         </Routes>
       </Router>
     </ThemeProvider>
