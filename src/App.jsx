@@ -4,8 +4,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import About from './pages/Blog';
+import Blog from './pages/Blog';
 import SignIn from './Auth/Sign_in';
+import Profile from './pages/profile';
+import NotFound from './pages/NotFound';
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -28,13 +30,10 @@ function App() {
         <Navbar toggleColorMode={toggleColorMode} mode={mode} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/blog"
-            element={
-              isAuthenticated ? <About /> : <Navigate to="/signin" replace />
-            }
-          />
+          <Route path="/blog" element={<Blog/>} />
+          <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/profile" replace />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </ThemeProvider>

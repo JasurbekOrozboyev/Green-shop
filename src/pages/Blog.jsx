@@ -1,332 +1,57 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Typography, Button } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faFacebookF, faInstagram, faTwitter, faLinkedin, faYoutube, faCcPaypal, faCcMastercard, faCcVisa } from '@fortawesome/free-brands-svg-icons';
-import Icon from '../images/icon/Vector.svg'
-import IconGul from "../images/section3/gulIcon.svg";
-
-
-
-
+import { Typography } from '@mui/material';
+import Footer from '../components/footer';
 const Blog = () => {
-  const [activeTab, setActiveTab] = useState('accountDetails');
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');     
-    localStorage.removeItem('userName');    
-    setUserName('');                     
-    navigate('/');                        
-  };
   
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      alert('Blog sahifasiga kirish uchun login qiling!');
-      navigate('/');
-    }
-  }, [navigate]);
-
   return <Typography >
-  <div className='container max-w-[1216px] m-auto overflow-hidden pt-2 flex justify-between mt-15'>
+  <div className='container max-w-[1216px] m-auto mt-5'>
+    {/* Saytni o'zidan oldim imglarni */}
+      <div className='w-full h-[300px] p-[50px] border border-gray-200 mt-3 flex max-2xl:h-[200px] max-md:h-[150px] justify-between rounded'>
+      <img src="https://firebasestorage.googleapis.com/v0/b/aema-image-upload.appspot.com/o/greenshop%2Fimages%2Fblog_avatar_1.png?alt=media&amp;token=8174091c-24b5-42a0-886d-845bd15cccb9" class="w-[15%] h-full" alt="blog_avatar_1"/>
+      <img class="w-[15%] h-full mt-[20px]" src="https://firebasestorage.googleapis.com/v0/b/aema-image-upload.appspot.com/o/greenshop%2Fimages%2Fblog_avatar_2.png?alt=media&amp;token=d2b8bf6f-7c67-4e93-b026-917f4291d9f6" alt="blog_avatar_2"/>
+      <img class="w-[15%] h-full mt-[50px]" src="https://firebasestorage.googleapis.com/v0/b/aema-image-upload.appspot.com/o/greenshop%2Fimages%2Fblog_avatar_3.png?alt=media&amp;token=7abda4b5-0f9e-4fc1-8353-e32194b925c9" alt="blog_avatar_3"/>
+      <img class="w-[15%] h-full mt-[20px]" src="https://firebasestorage.googleapis.com/v0/b/aema-image-upload.appspot.com/o/greenshop%2Fimages%2Fblog_avatar_4.png?alt=media&amp;token=2a9f4b03-30a0-4c89-b189-7c8835ab42e7" alt="blog_avatar_4"/>
+      <img class="w-[15%] h-full" src="https://firebasestorage.googleapis.com/v0/b/aema-image-upload.appspot.com/o/greenshop%2Fimages%2Fblog_avatar_5.png?alt=media&amp;token=f65d9df1-ea8b-4ebe-9d23-e3e768f0f701" alt="blog_avatar_5"></img>
+      </div>
       <div>
-        <div className='w-[310px] h-auto border border-gray-300 rounded'>
-          
-          <ul className='p-3 flex flex-col gap-1'>
-          <h2 className='font-bold text-2xl'>My Account</h2>
-          <li>
-                <button  onClick={() => setActiveTab('accountDetails')}  className={`w-full text-start border rounded p-2 ${activeTab === 'accountDetails' ? 'bg-green-500 text-white' : ''}`}>
-                  <p>Account Details</p>
-                </button>
-              </li>
-              <li>
-                <button  onClick={() => setActiveTab('myProducts')}  className={`w-full text-start border rounded p-2 ${activeTab === 'myProducts' ? 'bg-green-500 text-white' : ''}`}>
-                  <p>My Products</p>
-                </button>
-              </li>
-              <li>
-                <button  onClick={() => setActiveTab('address')}  className={`w-full text-start border rounded p-2 ${activeTab === 'address' ? 'bg-green-500 text-white' : ''}`}>
-                  <p>Address</p>
-                </button>
-              </li>
-              <li>
-                <button  onClick={() => setActiveTab('wishlist')}  className={`w-full text-start border rounded p-2 ${activeTab === 'wishlist' ? 'bg-green-500 text-white' : ''}`}>
-                  <p>Wishlist</p>
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => setActiveTab('trackOrder')} 
-                  className={`w-full text-start border rounded p-2 ${activeTab === 'trackOrder' ? 'bg-green-500 text-white' : ''}`}>
-                  <p>Track Order</p>
-                </button>
-              </li>
-              <hr className='text-green-500 mt-10'/>
-              <li>
-                <button onClick={handleLogout} className='mt-3 border rounded px-2'>
-                  <p className='text-red-500'>Log Out</p>
-                </button>
-              </li>
-          </ul>
+        <h2 className='text-8xl text-center font-bold'>Monetize your content with <span className='text-green-500'>GreenShop</span></h2>
+        <h3 className='text-4xl text-center mt-3'>Greenshop - a platform for buying and selling, publishing and monetizing all types of flowers: articles, notes, video, photos, podcasts or songs.</h3>
+      </div>
+      <div className='mt-10'>
+        <h2 className='text-5xl font-bold text-center'>My Feed</h2>
+        <center>
+        <input className='w-[80%] h-10 border rounded m-3 p-2' type="search" placeholder='Search...'/>
+        </center>
+      </div>
+      <div className='w-full grid grid-cols-3 gap-5 mt-10'>
+        <div className='border rounded p-2'>
+          <h2 className='font-bold mb-1 text-2xl'>How To Choose Wedding Flowers</h2>
+          <p>Flowers are an essential element or accessory for every wedding. These are needed for the bridal bouquet, table flowers, entrances, interior décor, and bridesmaids' posies. However, picking ideal flowers for a wedding is an extremely confusing task for most brides and grooms. In fact, it is natural for them to argue over such subjects too.</p>
+        </div>
+        <div className='border rounded p-2'>
+          <h2 className='font-bold mb-1 text-2xl'>FLOWER SUBSCRIPTIONS: A NEW WAY TO GIFT THIS HOLIDAY!</h2>
+          <p>“You take away all the other luxuries in life, and if you can make someone smile and laugh, you have given the most special gift: happiness.” Brad Garrett</p>
+        </div>
+        <div className='border rounded p-2'>
+          <h2 className='font-bold mb-1 text-2xl'>The History of the Teddy Bear for Collectors</h2>
+          <p>For many people, memories of childhood include a teddy bear or two (or more). Over the years, the stuffed toy has served as a beloved source of comfort and is often a first friend. In adulthood, people continue to cherish these cuddly bears and even</p>
+        </div>
+        <div className='border rounded p-2'>
+          <h2 className='font-bold mb-1 text-2xl'>The Resilience of Teddy Bears Through World Wars</h2>
+          <p>The teddy bear, a symbol of comfort and companionship, proved its resilience during some of the most challenging periods of the 20th century, particularly World War I and World War II. Despite the turmoil and hardship brought about by these global co</p>
+        </div>
+        <div className='border rounded p-2'>
+          <h2 className='font-bold mb-1 text-2xl'>A Symbol of Compassion</h2>
+          <p>The teddy bear, an enduring symbol of childhood and comfort, has a surprisingly poignant origin story that dates back to 1902. It all began with a hunting trip in the dense woods of Mississippi, where President Theodore Roosevelt found himself in the</p>
+        </div>
+        <div className='border rounded p-2'>
+          <h2 className='font-bold mb-1 text-2xl'>Express Your Emotions Through Flowers: The Meaning Behind Every Bloom</h2>
+          <p>Flowers are more than just beauty — they are powerful messengers of emotion. Every bloom carries a special meaning, helping you express love, gratitude, and care without words. Discover how to choose</p>
         </div>
       </div>
+  </div>
 
-      <div>
-        {activeTab === 'accountDetails' && (
-          <div className='w-[850px] grid grid-cols-2 gap-12'>
-            <div>
-              <h3><span className='text-red-500 mr-1'>*</span>First name</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Type your first name...' />
-            </div>
-            <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Last name</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Type your last name...' />
-            </div>
-            <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Email address</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="email" placeholder='Your email address...' />
-            </div>
-            <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Phone Number</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="number" placeholder='Your phone number...' />
-            </div>
-            <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Username</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Your username...' />
-            </div>
-            <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Profile Photo</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="file" />
-            </div>
-            <button className='w-[131px] h-10 rounded bg-green-500 text-white border p-2'>Save changes</button>
-          </div>
-        )}
-
-        {activeTab === 'myProducts' && (
-          <div className='w-[850px] h-auto'>
-           <h2 className='text-2xl font-bold text-start w-full'>My Products</h2>
-            
-          </div>
-        )}
-
-        {activeTab === 'address' && (
-          <div className='w-[850px] h-auto'>
-           <div>
-           <h2 className='text-2xl font-bold'>Address</h2>
-           <p>The following addresses will be used on the checkout page by default.</p>
-           </div>
-           <div className='grid grid-cols-2 gap-8 mt-3'>
-              <div>
-              <h3><span className='text-red-500 mr-1'>*</span>First name</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Type your first name...' />
-              </div>
-              <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Last name</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Type your last name...' />
-              </div>
-              <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Country / Region</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Select you country...' />
-              </div>
-              <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Town / City</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Select you town...' />
-              </div>
-              <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Streed Address</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='House number and street name...' />
-              </div>
-              <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Extra address</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Apparment, suit, unit, etc. (optional)' />
-              </div>
-              <div>
-              <h3><span className='text-red-500 mr-1'>*</span>State</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Select a state...' />
-              </div>
-              <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Zip </h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="file" placeholder='' />
-              </div>
-              <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Email address</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="email" placeholder='Type you email' />
-              </div>
-              <div>
-              <h3><span className='text-red-500 mr-1'>*</span>Phone Number</h3>
-              <input className='w-[350px] h-[40px] border rounded p-2' type="number" placeholder='Type you phone number' />
-              </div>
-              <button className='w-[131px] h-10 rounded bg-green-500 text-white border p-2'>
-                Save address
-              </button>
-           </div>
-           
-          </div>
-        )}
-
-        {activeTab === 'wishlist' && (
-          <div className='w-[850px] h-auto'>
-            <h2 className='text-2xl font-bold'>Wishlist</h2>
-          </div>
-        )}
-
-        {activeTab === 'trackOrder' && (
-          <div className='w-[850px] h-auto'>
-            <h2 className='text-2xl font-bold'>Track Order</h2>
-          </div>
-        )}
-      </div>
-    </div>
-
-
-
-
-  <footer className='container max-w-[1216px] m-auto mt-30'>
-        <div className='flex justify-between items-start'>
-          <div className='w-[204px] h-[201px]'>
-            <img src={IconGul} alt="gul" />
-            <h2 className='text-4 font-bold'>Garden Care</h2>
-            <p className='text-[14px] text-[#727272]'>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
-          </div>
-          <div className='w-[204px] h-[201px]'>
-            <img src={IconGul} alt="gul" />
-            <h2 className='text-4 font-bold'>Garden Care</h2>
-            <p className='text-[14px] text-[#727272]'>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
-          </div>
-          <div className='w-[204px] h-[201px]'>
-            <img src={IconGul} alt="gul" />
-            <h2 className='text-4 font-bold'>Garden Care</h2>
-            <p className='text-[14px] text-[#727272]'>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
-          </div>
-          <div className='w-[400px] h-[201px]'>
-            <h2 className='text-[18px] font-bold'>Would you like to join newsletters?</h2>
-            <div className='w-[354px] h-10'>
-              <input type="email" placeholder='enter your email address...' className='w-[265px] h-10 border rounded-bl rounded-tl px-3 py-1'/>
-              <Button variant="contained" sx={{backgroundColor: '#00C951',}} className='mt-[55px] w-[85px] h-10'>
-                <p>Join</p>
-              </Button>
-            </div>
-            <p className='w text-[13px] text-[#727272]'>We usually post offers and challenges in newsletter. We’re your online houseplant destination. We offer a wide range of houseplants and accessories shipped directly from our (green)house to yours! </p>
-          </div>
-        </div>
-        <div className='h-[88px] bg-[#EDF6EF]'>
-          <ul className='flex justify-around items-center pt-[28px]'>
-            <li className='flex items-center'>
-                <img src={Icon} alt="Icon" className='w-[35px] h-[35px]'/>
-                <p className='text-2xl font-bold text-[#46A358]'>GREENSHOP</p>
-            </li>
-            <li className='flex items-center gap-2'>
-              <div>
-              <FontAwesomeIcon icon={faLocationDot}  className='text-[#46A358] text-5'/>
-              </div>
-              <div>
-                <p className='w-[185px] h-11 text-[14px] text-[#3D3D3D]'>70 West Buckingham Ave.
-                Farmingdale, NY 11735</p>
-              </div>
-            </li>
-            <li className='flex items-center gap-2'>
-              <div>
-              <FontAwesomeIcon icon={faEnvelope} className='text-[#46A358]'/>
-              </div>
-              <div>
-                <p className='text-[14px] text-[#3D3D3D]'>contact@greenshop.com</p>
-              </div>
-            </li>
-            <li className='flex items-center gap-2'>
-              <div>
-              <FontAwesomeIcon icon={faPhone} className='text-[#46A358]'/>
-              </div>
-              <div>
-                <p className='text-[14px] text-[#3D3D3D]'>
-                +88 01911 717 490
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div className='flex justify-between mt-5'>
-          <ul className='flex flex-col gap-2'>
-            <li>
-              <p className='font-bold'>My Account</p>
-            </li>
-            <li>
-              <p className='text-[#3D3D3D]'>My Account</p>
-            </li>
-            <li>
-              <p className='text-[#3D3D3D]'>Address</p>
-            </li>
-            <li>
-              <p className='text-[#3D3D3D]'>
-              Wishlist
-              </p>
-            </li>
-          </ul>
-          <ul className='flex flex-col gap-2'>
-            <li>
-              <p className='font-bold'>Categories</p>
-            </li>
-            <li>
-              <p className='text-[#3D3D3D]'>House Plants</p>
-            </li>
-            <li>
-              <p className='text-[#3D3D3D]'>Potter Plants</p>
-            </li>
-            <li>
-              <p className='text-[#3D3D3D]'>Seeds</p>
-            </li>
-            <li>
-              <p className='text-[#3D3D3D]'>Small Plants</p>
-            </li>
-            <li>
-              <p className='text-[#3D3D3D]'>Accessories</p>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <h2 className='text-[18px] font-bold mb-5'>Social Media</h2>
-              <div>
-                <ul className='flex justify-between items-center gap-4'>
-                  <li className='border px-3 py-2 rounded border-[#46A358]'>
-                  <FontAwesomeIcon icon={faFacebookF} className='text-[#46A35899]'/>
-                  </li>
-                  <li className='border px-3 py-2 rounded border-[#46A358]'>
-                  <FontAwesomeIcon icon={faInstagram} className='text-[#46A35899]'/>
-                  </li>
-                  <li className='border px-3 py-2 rounded border-[#46A35899]'>
-                  <FontAwesomeIcon icon={faTwitter} className='text-[#46A35899]'/>
-                  </li>
-                  <li className='border px-3 py-2 rounded border-[#46A35899]'>
-                  <FontAwesomeIcon icon={faLinkedin} className='text-[#46A35899]'/>
-                  </li>
-                  <li className='border px-3 py-2 rounded border-[#46A35899]'>
-                  <FontAwesomeIcon icon={faYoutube} className='text-[#46A35899]'/>
-                  </li>
-                </ul>
-                <h2 className='mt-[33px] mb-3 font-bold text-[18px]'>We accept</h2>
-                <ul className='flex items-center gap-10'>
-                  <li>
-                  <FontAwesomeIcon icon={faCcPaypal}  className='text-[20px]'/>
-                  </li>
-                  <li>
-                  <FontAwesomeIcon icon={faCcMastercard}  className='text-[20px]'/>
-                  </li>
-                  <li>
-                  <FontAwesomeIcon icon={faCcVisa} className='text-[20px]' />
-                  </li>
-                  <li>
-                      <p className='text-[6px] font-bold'>AMERICAN <br /> EXPRESS</p>
-                  </li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <hr  className='mt-5 text-green-500'/>
-        <h2 className='text-center text-[14px] text-[#3D3D3D]'>© 2021 GreenShop. All Rights Reserved.</h2>
-      </footer>
+    <Footer/>
+  
   </Typography>;
 };
 

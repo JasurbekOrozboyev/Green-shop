@@ -32,10 +32,10 @@ const Category = () => {
     <div className='container max-w-[1216px] m-auto overflow-hidden pt-2'>
      <div className="flex justify-between gap-[50px]">
       <div className="w-[310px] h-auto border border-gray-200 rounded p-2">
-        <h3 className="text-[18px] font-semibold mb-3">Categoriya sahifasi</h3>
+        <h3 className="text-[24px] font-semibold mb-3">Categoriya sahifasi</h3>
         {data.map((dat) => (
             <div >
-                <ul className="flex justify-between items-center  hover:text-green-500">
+                <ul className="flex justify-between items-center text-[20px]  hover:text-green-500">
                     <li className="mb-[12px]">{dat.title}</li>
                     <li>({dat.count})</li>
                 </ul>

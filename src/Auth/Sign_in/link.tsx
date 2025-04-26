@@ -31,7 +31,7 @@ const signIn: (provider: AuthProvider) => void | Promise<AuthResponse> = async (
 export default function OAuthSignInPage() {
   const theme = useTheme();
   return (
-   <div className='mt-[-230px] mb-[-230px]'>
+   <div className='mt-[-200px] mb-[-230px]'>
       <AppProvider theme={theme}>
       <SignInPage signIn={signIn} providers={providers} />
     </AppProvider>
