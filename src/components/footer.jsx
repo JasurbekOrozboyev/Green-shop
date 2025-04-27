@@ -8,7 +8,7 @@ import IconGul from "../images/section3/gulIcon.svg";
 
 const Footer = () => {
   return (
-    <footer className='container max-w-[1216px] m-auto mt-30'>
+    <footer className='container max-w-[1216px] m-auto mt-50'>
         <div className='flex justify-between items-start'>
           <div className='w-[204px] h-[201px]'>
             <img src={IconGul} alt="gul" />
