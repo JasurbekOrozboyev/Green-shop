@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import Footer from '../components/footer';
+import BlogTitle from '../Home/Main/Categories/Category/discount'
 const Blog = () => {
   
   return <Typography >
@@ -22,31 +23,8 @@ const Blog = () => {
         <input className='w-[80%] h-10 border rounded m-3 p-2' type="search" placeholder='Search...'/>
         </center>
       </div>
-      <div className='w-full grid grid-cols-3 gap-5 mt-10'>
-        <div className='border rounded p-2'>
-          <h2 className='font-bold mb-1 text-2xl'>How To Choose Wedding Flowers</h2>
-          <p>Flowers are an essential element or accessory for every wedding. These are needed for the bridal bouquet, table flowers, entrances, interior décor, and bridesmaids' posies. However, picking ideal flowers for a wedding is an extremely confusing task for most brides and grooms. In fact, it is natural for them to argue over such subjects too.</p>
-        </div>
-        <div className='border rounded p-2'>
-          <h2 className='font-bold mb-1 text-2xl'>FLOWER SUBSCRIPTIONS: A NEW WAY TO GIFT THIS HOLIDAY!</h2>
-          <p>“You take away all the other luxuries in life, and if you can make someone smile and laugh, you have given the most special gift: happiness.” Brad Garrett</p>
-        </div>
-        <div className='border rounded p-2'>
-          <h2 className='font-bold mb-1 text-2xl'>The History of the Teddy Bear for Collectors</h2>
-          <p>For many people, memories of childhood include a teddy bear or two (or more). Over the years, the stuffed toy has served as a beloved source of comfort and is often a first friend. In adulthood, people continue to cherish these cuddly bears and even</p>
-        </div>
-        <div className='border rounded p-2'>
-          <h2 className='font-bold mb-1 text-2xl'>The Resilience of Teddy Bears Through World Wars</h2>
-          <p>The teddy bear, a symbol of comfort and companionship, proved its resilience during some of the most challenging periods of the 20th century, particularly World War I and World War II. Despite the turmoil and hardship brought about by these global co</p>
-        </div>
-        <div className='border rounded p-2'>
-          <h2 className='font-bold mb-1 text-2xl'>A Symbol of Compassion</h2>
-          <p>The teddy bear, an enduring symbol of childhood and comfort, has a surprisingly poignant origin story that dates back to 1902. It all began with a hunting trip in the dense woods of Mississippi, where President Theodore Roosevelt found himself in the</p>
-        </div>
-        <div className='border rounded p-2'>
-          <h2 className='font-bold mb-1 text-2xl'>Express Your Emotions Through Flowers: The Meaning Behind Every Bloom</h2>
-          <p>Flowers are more than just beauty — they are powerful messengers of emotion. Every bloom carries a special meaning, helping you express love, gratitude, and care without words. Discover how to choose</p>
-        </div>
+      <div >
+        <BlogTitle/>
       </div>
   </div>
 
