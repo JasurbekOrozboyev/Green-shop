@@ -8,6 +8,8 @@ import Blog from './pages/Blog';
 import SignIn from './Auth/Sign_in';
 import Profile from './pages/profile';
 import NotFound from './pages/NotFound';
+import Products from './pages/products'
+import Checkout from './pages/Checkout'
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -34,6 +36,8 @@ function App() {
           <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/profile" replace />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Router>
     </ThemeProvider>

@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Slider, Button } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 
 const slugify = (str) => str.toLowerCase().replace(/\s+/g, '-');
 
@@ -10,6 +14,8 @@ const Category = () => {
   const [flowers, setFlowers] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
 
   const category = searchParams.get("category");
   const type = searchParams.get("type");
@@ -28,6 +34,7 @@ const Category = () => {
   const getFlowers = async () => {
     let categoryPath = category ? category : 'all-plants';
     let apiUrl = `https://green-shop-backend.onrender.com/api/flower/category/${categoryPath}?access_token=6506e8bd6ec24be5de357927`;
+
 
     const res = await axios.get(apiUrl);
     let flowersData = res?.data?.data;
@@ -89,8 +96,43 @@ const Category = () => {
     setSearchParams(newParams);
   };
 
+
+  const addToCart = (flower) => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const exists = cart.find(item => item._id === flower._id);
+  
+    if (!exists) {
+      const updatedCart = [...cart, flower];
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+  
+    window.dispatchEvent(new Event('cartUpdated'));
+  
+    handleSnackbarOpen();
+  };
+  
+  
+  const handleSnackbarOpen = () => {
+    setOpenSnackbar(true);
+  };
+  
+  const handleSnackbarClose = (reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
+  };
+  
+
   return (
     <div className='container max-w-[1216px] m-auto overflow-hidden pt-2'>
+      <div>
+      <Snackbar open={openSnackbar} autoHideDuration={2000} onClose={handleSnackbarClose} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+        <MuiAlert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
+          Mahsulot savatga qo'shildi!
+        </MuiAlert>
+      </Snackbar>
+    </div>
       <div className="flex justify-between gap-[50px]">
         <div className="w-[310px] h-auto border border-gray-200 rounded p-2">
           <h3 className="text-[18px] font-semibold mb-3">Categoriya sahifasi</h3>
@@ -175,6 +217,11 @@ const Category = () => {
               <div key={flower._id}>
                 <div className="border border-gray-300 p-3 relative">
                   <p className="absolute top-[21px] left-0 bg-green-500 text-white px-3 py-1">13% OFF</p>
+                  <button
+                      className="w-7 h-7 absolute bottom-6 right-5 transition transform active:scale-75"
+                      onClick={() => addToCart(flower)}>
+                      <ShoppingCartIcon />
+                  </button>
                   <img src={flower.main_image} alt={flower.title} className="w-[250px] h-[250px] border" />
                 </div>
                 <p className="text-[16px]">{flower.title}</p>

@@ -5,7 +5,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Icon from '../images/icon/Vector.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -15,8 +15,8 @@ const Navbar = ({ toggleColorMode, mode }) => {
   const [openModal, setOpenModal] = useState(false);
   const [authType, setAuthType] = useState('login');
   const [userName, setUserName] = useState('');
-  const navigate = useNavigate();
   const token = localStorage.getItem('token');
+  const [cartCount, setCartCount] = useState(0);
 
   const closeModal = () => setOpenModal(false);
 
@@ -53,6 +53,21 @@ const Navbar = ({ toggleColorMode, mode }) => {
       setAuthType('login');
     }
   };
+
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCartCount(cart.length);
+  
+    const handleCartUpdate = () => {
+      const updatedCart = JSON.parse(localStorage.getItem('cart')) || [];
+      setCartCount(updatedCart.length);
+    };
+  
+    window.addEventListener('cartUpdated', handleCartUpdate);
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+    };
+  }, []);
   
 
   return (
@@ -86,9 +101,14 @@ const Navbar = ({ toggleColorMode, mode }) => {
             </IconButton>
           </li>
           <li>
-            <Badge badgeContent={0} color="error">
-              <ShoppingCartIcon />
-            </Badge>
+            <Link to="/products">
+            <IconButton>
+              <Badge badgeContent={cartCount} color="error">
+                <ShoppingCartIcon />
+              </Badge>
+            </IconButton>
+          </Link>
+
           </li>
           <li>
             <IconButton color="inherit" onClick={toggleColorMode}>
