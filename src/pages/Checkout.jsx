@@ -32,7 +32,6 @@ const Checkout = () => {
     const newOrder = {
       orderNumber: Math.floor(Math.random() * 10000000000000),
       date: new Date().toDateString(),
-      paymentMethod: 'Cash on delivery',
       items: cartItems,
       shipping,
       total,
@@ -56,31 +55,42 @@ const Checkout = () => {
   return (
     <div className='container max-w-[1216px] m-auto overflow-hidden pt-2'>
       <h2 className='text-2xl font-bold border-b border-gray-400 pb-2 mb-4'>Checkout</h2>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-        <div>
+      <div className='grid md:grid-cols-2 gap-6'>
+        <div className=''>
           <h3 className='text-xl font-semibold mb-4'>Billing Address</h3>
           <form className='space-y-4' onSubmit={handlePlaceOrder}>
-            <div className='flex gap-2'>
+            <div className='grid grid-cols-2 gap-2'>
+              <h2><span className='text-red-500'>*</span> Frist name</h2>
+              <h2><span className='text-red-500'>*</span> Last name</h2>
               <input type='text' placeholder='First name' className='border p-2 rounded w-full' required />
               <input type='text' placeholder='Last name' className='border p-2 rounded w-full' required />
             </div>
-            <div className='flex gap-2'>
+            <div className='grid grid-cols-2 gap-2'>
+              <h2><span className='text-red-500'>*</span> Country / Region</h2>
+              <h2><span className='text-red-500'>*</span>Town / City</h2>
               <input type='text' placeholder='Country / Region' className='border p-2 rounded w-full' required />
               <input type='text' placeholder='Town / City' className='border p-2 rounded w-full' required />
             </div>
+            <h2><span className='text-red-500'>*</span> Steed Adress</h2>
             <input type='text' placeholder='Street Address' className='border p-2 rounded w-full' required />
-            <div className='flex gap-2'>
+            <div className='grid grid-cols-2 gap-2'>
+                <h2><span className='text-red-500'>*</span> State</h2>
+                <h2><span className='text-red-500'>*</span> Zip</h2>
               <input type='text' placeholder='State' className='border p-2 rounded w-full' required />
               <input type='text' placeholder='Zip' className='border p-2 rounded w-full' required />
             </div>
-            <div className='flex gap-2'>
+            <div className='grid grid-cols-2 gap-2'>
+              <h2><span className='text-red-500'>*</span> Email Address</h2>
+              <h2><span className='text-red-500'>*</span> Phone Number</h2>
               <input type='email' placeholder='Email address' className='border p-2 rounded w-full' required />
               <input type='tel' placeholder='Phone Number' className='border p-2 rounded w-full' required />
             </div>
 
             <h3 className='text-xl font-semibold mt-6 mb-2'>Payment Method</h3>
             <div className='space-y-2'>
+            <h2><span className='text-red-500'>*</span> Payment Method</h2>
               <label className='flex items-center gap-2 border rounded p-2'>
+                
                 <input type='radio' name='payment' defaultChecked />
                 PayPal / Visa / Mastercard
               </label>
@@ -92,6 +102,10 @@ const Checkout = () => {
                 <input type='radio' name='payment' />
                 Cash on delivery
               </label>
+              <div className='mt-3'>
+                <h2>Order notes (optional)</h2>
+                <textarea className='w-full border rounded h-35 p-2' placeholder='You order notes, tought, feedback, etc...'></textarea>
+              </div>
             </div>
             <button type='submit' className='w-full bg-green-600 text-white py-2 rounded mt-4 hover:bg-green-700 transition'>
               Place Order

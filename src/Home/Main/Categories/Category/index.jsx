@@ -26,15 +26,14 @@ const Category = () => {
 
   const getCategories = async () => {
     const res = await axios.get(
-      "https://green-shop-backend.onrender.com/api/flower/category?access_token=6506e8bd6ec24be5de357927"
+      "https://green-shop-backend.onrender.com/api/flower/category?access_token=68063351a46b81457373a349"
     );
     setData(res?.data?.data);
   };
 
   const getFlowers = async () => {
     let categoryPath = category ? category : 'all-plants';
-    let apiUrl = `https://green-shop-backend.onrender.com/api/flower/category/${categoryPath}?access_token=6506e8bd6ec24be5de357927`;
-
+    let apiUrl = `https://green-shop-backend.onrender.com/api/flower/category/${categoryPath}?access_token=68063351a46b81457373a349`;
 
     const res = await axios.get(apiUrl);
     let flowersData = res?.data?.data;
@@ -214,12 +213,10 @@ const Category = () => {
 
           <div className="grid grid-cols-3 gap-[50px]">
             {flowers.map((flower) => (
-              <div key={flower._id}>
+              <div className="group" key={flower._id}>
                 <div className="border border-gray-300 p-3 relative">
                   <p className="absolute top-[21px] left-0 bg-green-500 text-white px-3 py-1">13% OFF</p>
-                  <button
-                      className="w-7 h-7 absolute bottom-6 right-5 transition transform active:scale-75"
-                      onClick={() => addToCart(flower)}>
+                  <button className="w-7 h-7 absolute bottom-6 right-5 transition transform active:scale-75 group-hover:block hidden" onClick={() => addToCart(flower)}>
                       <ShoppingCartIcon />
                   </button>
                   <img src={flower.main_image} alt={flower.title} className="w-[250px] h-[250px] border" />

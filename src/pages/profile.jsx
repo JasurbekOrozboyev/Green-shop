@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { Typography, Button } from "@mui/material";
 import Footer from "../components/footer";
 import NotFound from "./NotFound";
+import axios from 'axios';
 
 const TrackOrderTab = () => {
   const [orders, setOrders] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const storedOrders = localStorage.getItem('orders');
@@ -13,57 +15,72 @@ const TrackOrderTab = () => {
     }
   }, []);
 
-  const handleDeleteOrder = (orderNumber) => {
-    const updatedOrders = orders.filter(order => order.orderNumber !== orderNumber);
-    setOrders(updatedOrders);
-    localStorage.setItem('orders', JSON.stringify(updatedOrders));
+  const getOrders = async () => {
+    const res = await axios.get(
+      "https://green-shop-backend.onrender.com/api/order/get-order?access_token=68063351a46b81457373a349"
+    );
+    setData(res?.data?.data);
   };
+
+  useEffect(() => {
+    getOrders();
+  }, []);
+
+  const deleteOrder = async (orderId) => {
+    if (!orderId) {
+      console.error("Buyurtma ID mavjud emas!");
+      return;
+    }
+  
+    try {
+      const response = await axios({
+        method: 'delete',
+        url: 'https://green-shop-backend.onrender.com/api/order/delete-order',
+        params: {
+          access_token: '68063351a46b81457373a349',
+          _id: orderId  
+        }
+      });
+  
+      console.log('Buyurtma muvaffaqiyatli o‘chirildi', response.data);
+      setData((prevData) => prevData.filter(order => order._id !== orderId));
+    } catch (error) {
+      console.error('Xatolik yuz berdi:', error.response?.data || error.message);
+    }
+  };
+  
+  
+  
+  
+  
 
   return (
     <div className='w-[850px] h-auto'>
       <h2 className='text-2xl font-bold mb-4'>Track Order</h2>
       {orders.length > 0 ? (
         <ul className='space-y-6'>
-          {orders.map((order, index) => (
-            <li key={index} className='p-4 shadow rounded'>
-              <div className='flex justify-end items-center mb-2'>
-                <button className='px-3 py-1 border rounded' onClick={() => handleDeleteOrder(order.orderNumber)}>
-                  Delete
-                </button>
+          <div>
+            {data.map((order, idx) => (
+              <div key={idx}>
+                <ul>
+                  <li>
+                    <h2 className='font-bold'>Order Number</h2>
+                    {order._id.slice(-14)}
+                  </li>
+                  <li>
+                  <button className='border p-1 rounded' onClick={() => deleteOrder(order._id)}>
+                    O'chirish
+                  </button>
+
+
+                  </li>
+                </ul>
               </div>
-              <div className="overflow-x-auto mt-2">
-                <table className="min-w-full border border-gray-300">
-                  <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border px-4 py-2 text-left">Image</th>
-                      <th className="border px-4 py-2 text-left">Title</th>
-                      <th className="border px-4 py-2 text-left">Order Number</th>
-                      <th className="border px-4 py-2 text-left">Date</th>
-                      <th className="border px-4 py-2 text-left">Price</th>
-                      <th className="border px-4 py-2 text-left">Quantity</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {order.items.map((item, idx) => (
-                      <tr key={idx}>
-                        <td className="border px-4 py-2">
-                          <img src={item.main_image} alt={item.title} className='w-[50px] h-[50px] object-cover' />
-                        </td>
-                        <td className="border px-4 py-2">{item.title}</td>
-                        <td className="border px-4 py-2">{order.orderNumber}</td>
-                        <td className="border px-4 py-2">{order.date}</td>
-                        <td className="border px-4 py-2">${item.price * item.quantity}</td>
-                        <td className="border px-4 py-2">{item.quantity} ta</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </li>
-          ))}
+            ))}
+          </div>
         </ul>
       ) : (
-        <NotFound/>
+        <NotFound />
       )}
     </div>
   );
@@ -160,57 +177,57 @@ const Blog = () => {
           )}
 
           {activeTab === 'address' && (
-            <div className='w-[850px] h-auto'>
-              <div>
-                <h2 className='text-2xl font-bold'>Address</h2>
-                <p>The following addresses will be used on the checkout page by default.</p>
+              <div className='w-[850px] h-auto'>
+                <div>
+                  <h2 className='text-2xl font-bold'>Address</h2>
+                  <p>The following addresses will be used on the checkout page by default.</p>
+                </div>
+                <div className='grid grid-cols-2 gap-8 mt-3'>
+                  <div>
+                    <h3><span className='text-red-500 mr-1'>*</span>First name</h3>
+                    <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Type your first name...' />
+                  </div>
+                  <div>
+                    <h3><span className='text-red-500 mr-1'>*</span>Last name</h3>
+                    <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Type your last name...' />
+                  </div>
+                  <div>
+                    <h3><span className='text-red-500 mr-1'>*</span>Country / Region</h3>
+                    <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Select your country...' />
+                  </div>
+                  <div>
+                    <h3><span className='text-red-500 mr-1'>*</span>Town / City</h3>
+                    <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Select your town...' />
+                  </div>
+                  <div>
+                    <h3><span className='text-red-500 mr-1'>*</span>Street Address</h3>
+                    <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='House number and street name...' />
+                  </div>
+                  <div>
+                    <h3><span className='text-red-500 mr-1'>*</span>Extra address</h3>
+                    <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Apartment, suite, unit, etc. (optional)' />
+                  </div>
+                  <div>
+                    <h3><span className='text-red-500 mr-1'>*</span>State</h3>
+                    <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Select a state...' />
+                  </div>
+                  <div>
+                    <h3><span className='text-red-500 mr-1'>*</span>Zip</h3>
+                    <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Enter ZIP code' />
+                  </div>
+                  <div>
+                    <h3><span className='text-red-500 mr-1'>*</span>Email address</h3>
+                    <input className='w-[350px] h-[40px] border rounded p-2' type="email" placeholder='Type your email' />
+                  </div>
+                  <div>
+                    <h3><span className='text-red-500 mr-1'>*</span>Phone Number</h3>
+                    <input className='w-[350px] h-[40px] border rounded p-2' type="number" placeholder='Type your phone number' />
+                  </div>
+                  <button className='w-[131px] h-10 rounded bg-green-500 text-white border p-2'>
+                    Save address
+                  </button>
+                </div>
               </div>
-              <div className='grid grid-cols-2 gap-8 mt-3'>
-                <div>
-                  <h3><span className='text-red-500 mr-1'>*</span>First name</h3>
-                  <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Type your first name...' />
-                </div>
-                <div>
-                  <h3><span className='text-red-500 mr-1'>*</span>Last name</h3>
-                  <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Type your last name...' />
-                </div>
-                <div>
-                  <h3><span className='text-red-500 mr-1'>*</span>Country / Region</h3>
-                  <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Select your country...' />
-                </div>
-                <div>
-                  <h3><span className='text-red-500 mr-1'>*</span>Town / City</h3>
-                  <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Select your town...' />
-                </div>
-                <div>
-                  <h3><span className='text-red-500 mr-1'>*</span>Street Address</h3>
-                  <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='House number and street name...' />
-                </div>
-                <div>
-                  <h3><span className='text-red-500 mr-1'>*</span>Extra address</h3>
-                  <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Apartment, suite, unit, etc. (optional)' />
-                </div>
-                <div>
-                  <h3><span className='text-red-500 mr-1'>*</span>State</h3>
-                  <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Select a state...' />
-                </div>
-                <div>
-                  <h3><span className='text-red-500 mr-1'>*</span>Zip</h3>
-                  <input className='w-[350px] h-[40px] border rounded p-2' type="text" placeholder='Enter ZIP code' />
-                </div>
-                <div>
-                  <h3><span className='text-red-500 mr-1'>*</span>Email address</h3>
-                  <input className='w-[350px] h-[40px] border rounded p-2' type="email" placeholder='Type your email' />
-                </div>
-                <div>
-                  <h3><span className='text-red-500 mr-1'>*</span>Phone Number</h3>
-                  <input className='w-[350px] h-[40px] border rounded p-2' type="number" placeholder='Type your phone number' />
-                </div>
-                <button className='w-[131px] h-10 rounded bg-green-500 text-white border p-2'>
-                  Save address
-                </button>
-              </div>
-            </div>
           )}
 
           {activeTab === 'wishlist' && (
