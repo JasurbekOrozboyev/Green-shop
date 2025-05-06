@@ -3,7 +3,6 @@ import { Typography, Button } from "@mui/material";
 import Footer from "../components/footer";
 import NotFound from "./NotFound";
 import axios from 'axios';
-import AddressForm from './Address';
 
 const TrackOrderTab = () => {
   const [orders, setOrders] = useState([]);
@@ -34,16 +33,18 @@ const TrackOrderTab = () => {
     }
   
     try {
+      // DELETE so'rovini yuborish (faqat _id bilan)
       const response = await axios.delete(
-        `https://green-shop-backend.onrender.com/api/order/delete-order`, 
+        `https://green-shop-backend.onrender.com/api/order/delete-order`, // URLda faqat delete-order
         {
           params: {
-            _id: orderId,  
-            token: '68063351a46b81457373a349', 
+            _id: orderId,  // Faqat _idni query param sifatida yuboramiz
+            token: '68063351a46b81457373a349',  // tokenni yuboramiz
           }
         }
       );
   
+      // O'chirish muvaffaqiyatli bo'lsa, buyurtmalar ro'yhatini yangilash
       if (response.status === 200) {
         console.log('Buyurtma muvaffaqiyatli o‘chirildi', response.data);
         setData((prevData) => prevData.filter(order => order._id !== orderId));
@@ -51,6 +52,7 @@ const TrackOrderTab = () => {
         console.error('Serverdan xato javob:', response.data);
       }
     } catch (error) {
+      // Xatolikni tahlil qilish
       console.error('Xatolik yuz berdi:', error.response?.data || error.message);
       if (error.response && error.response.status === 500) {
         console.error('Serverda ichki xatolik yuz berdi. Iltimos, keyinroq qayta urinib koring.');
@@ -64,15 +66,16 @@ const TrackOrderTab = () => {
     <div className='w-[850px] h-auto'>
       <h2 className='text-2xl font-bold mb-4'>Track Order</h2>
       {orders.length > 0 ? (
-        <ul className='space-x-6'>
+        <ul className='space-y-6'>
           <div>
             {data.map((order, idx) => (
-              <div key={idx} >
-                <ul className='flex justify-between items-center'>
+              <div key={idx}>
+                <ul>
                   <li>
                     <h2 className='font-bold'>Order Number</h2>
                     {order._id.slice(-14)}
                   </li>
+                  <li>{order.total}</li>
                   <li>
                     <button className='border p-1 rounded' onClick={() => deleteOrder(order._id)}>
                       O'chirish
