@@ -33,18 +33,17 @@ const TrackOrderTab = () => {
     }
   
     try {
-      // DELETE so'rovini yuborish (faqat _id bilan)
+     
       const response = await axios.delete(
-        `https://green-shop-backend.onrender.com/api/order/delete-order`, // URLda faqat delete-order
+        `https://green-shop-backend.onrender.com/api/order/delete-order`, 
         {
           params: {
-            _id: orderId,  // Faqat _idni query param sifatida yuboramiz
-            token: '68063351a46b81457373a349',  // tokenni yuboramiz
+            _id: orderId,  
+            token: '68063351a46b81457373a349',  
           }
         }
       );
   
-      // O'chirish muvaffaqiyatli bo'lsa, buyurtmalar ro'yhatini yangilash
       if (response.status === 200) {
         console.log('Buyurtma muvaffaqiyatli o‘chirildi', response.data);
         setData((prevData) => prevData.filter(order => order._id !== orderId));
@@ -52,7 +51,6 @@ const TrackOrderTab = () => {
         console.error('Serverdan xato javob:', response.data);
       }
     } catch (error) {
-      // Xatolikni tahlil qilish
       console.error('Xatolik yuz berdi:', error.response?.data || error.message);
       if (error.response && error.response.status === 500) {
         console.error('Serverda ichki xatolik yuz berdi. Iltimos, keyinroq qayta urinib koring.');
