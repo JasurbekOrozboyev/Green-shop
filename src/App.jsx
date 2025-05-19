@@ -10,6 +10,9 @@ import Profile from './pages/profile';
 import NotFound from './pages/NotFound';
 import Products from './pages/products'
 import Checkout from './pages/Checkout'
+import './i18n/i18n'; // shu qatorni qo'shing!
+
+
 
 function App() {
   const [mode, setMode] = useState('light');

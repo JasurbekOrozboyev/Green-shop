@@ -11,14 +11,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import SignIn from '../Auth/Sign_in/index';
 
+import { useTranslation } from 'react-i18next';
+
 const Navbar = ({ toggleColorMode, mode }) => {
   const [openModal, setOpenModal] = useState(false);
   const [authType, setAuthType] = useState('login');
   const [userName, setUserName] = useState('');
-  const token = localStorage.getItem('token');
   const [cartCount, setCartCount] = useState(0);
 
+  const token = localStorage.getItem('token');
+
   const closeModal = () => setOpenModal(false);
+
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   useEffect(() => {
     if (token) {
@@ -32,7 +41,6 @@ const Navbar = ({ toggleColorMode, mode }) => {
             .join('')
         );
         const payload = JSON.parse(jsonPayload);
-
         if (payload.user && payload.user.name) {
           setUserName(payload.user.name);
         } else {
@@ -57,18 +65,17 @@ const Navbar = ({ toggleColorMode, mode }) => {
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     setCartCount(cart.length);
-  
+
     const handleCartUpdate = () => {
       const updatedCart = JSON.parse(localStorage.getItem('cart')) || [];
       setCartCount(updatedCart.length);
     };
-  
+
     window.addEventListener('cartUpdated', handleCartUpdate);
     return () => {
       window.removeEventListener('cartUpdated', handleCartUpdate);
     };
   }, []);
-  
 
   return (
     <Fragment>
@@ -77,16 +84,18 @@ const Navbar = ({ toggleColorMode, mode }) => {
           <img src={Icon} alt="Icon" className="w-[35px] h-[35px]" />
           <p className="text-2xl font-bold text-green-500">GREENSHOP</p>
         </div>
+
         <ul className="flex justify-center items-center">
           <li className="flex justify-center items-center">
             <ListItem button className="hover:text-[#46A358]" component={Link} to="/">
-              <ListItemText primary="Home" />
+              <ListItemText primary={t('navbar.home')} />
             </ListItem>
             <ListItem button className="hover:text-[#46A358]" component={Link} to="/blog">
-              <ListItemText primary="Blog" />
+              <ListItemText primary={t('navbar.blog')} />
             </ListItem>
           </li>
         </ul>
+
         <ul className="flex items-center gap-3">
           <li>
             <IconButton color="primary" aria-label="search">
@@ -102,13 +111,12 @@ const Navbar = ({ toggleColorMode, mode }) => {
           </li>
           <li>
             <Link to="/products">
-            <IconButton>
-              <Badge badgeContent={cartCount} color="error">
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
-          </Link>
-
+              <IconButton>
+                <Badge badgeContent={cartCount} color="error">
+                  <ShoppingCartIcon />
+                </Badge>
+              </IconButton>
+            </Link>
           </li>
           <li>
             <IconButton color="inherit" onClick={toggleColorMode}>
@@ -116,16 +124,27 @@ const Navbar = ({ toggleColorMode, mode }) => {
             </IconButton>
           </li>
           <li>
-            <Button variant="contained" sx={{ backgroundColor: '#00C951' }} className="flex items-center gap-1" onClick={handleProfileClick}>
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: '#00C951' }}
+              className="flex items-center gap-1"
+              onClick={handleProfileClick}
+            >
               {userName ? (
                 <span>{userName}</span>
               ) : (
                 <>
                   <FontAwesomeIcon icon={faRightFromBracket} />
-                  <span>Login</span>
+                  <span>{t('navbar.login')}</span>
                 </>
               )}
             </Button>
+          </li>
+          <li>
+            <select value={i18n.language} onChange={(e) => changeLanguage(e.target.value)} className="border rounded px-2 py-1">
+              <option value="uz">Uz </option>
+              <option value="en">Eng</option>
+            </select>
           </li>
         </ul>
       </div>
@@ -134,11 +153,17 @@ const Navbar = ({ toggleColorMode, mode }) => {
         <div className="fixed inset-0 bg-blur-xs bg-opacity-40 flex items-center justify-center z-50">
           <div className="relative bg-white rounded-lg p-6 shadow-lg max-w-sm w-full">
             <div className="flex justify-center mb-4 gap-4">
-              <button className={`px-4 py-1 rounded ${authType === 'login' ? 'bg-green-500 text-white' : 'bg-gray-200'}`} onClick={() => setAuthType('login')}>
-                Login
+              <button
+                className={`px-4 py-1 rounded ${authType === 'login' ? 'bg-green-500 text-white' : 'bg-gray-200'}`}
+                onClick={() => setAuthType('login')}
+              >
+                {t('auth.login')}
               </button>
-              <button className={`px-4 py-1 rounded ${authType === 'register' ? 'bg-green-500 text-white' : 'bg-gray-200'}`} onClick={() => setAuthType('register')}>
-                SignUp
+              <button
+                className={`px-4 py-1 rounded ${authType === 'register' ? 'bg-green-500 text-white' : 'bg-gray-200'}`}
+                onClick={() => setAuthType('register')}
+              >
+                {t('auth.signup')}
               </button>
             </div>
 

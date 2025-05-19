@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/footer';
 import { Dialog, DialogContent, DialogActions, Button } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const Checkout = () => {
+  const { t } = useTranslation();
+
   const [cartItems, setCartItems] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [orderInfo, setOrderInfo] = useState(null);
@@ -99,7 +102,7 @@ const Checkout = () => {
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Server error:', errorData);
-        throw new Error('Order submission failed');
+        throw new Error(t('order_submission_failed'));
       }
 
       const data = await response.json();
@@ -119,164 +122,116 @@ const Checkout = () => {
       setCartItems([]);
 
     } catch (error) {
-      console.error('Error submitting order:', error);
+      console.error(t('error_submitting_order'), error);
     }
   };
 
   const handleClose = () => {
     setOpenModal(false);
   };
-  
-  
 
   return (
     <div className='container max-w-[1216px] m-auto overflow-hidden pt-2'>
-      <h2 className='text-2xl font-bold border-b border-gray-400 pb-2 mb-4'>Checkout</h2>
+      <h2 className='text-2xl font-bold border-b border-gray-400 pb-2 mb-4'>{t('checkout')}</h2>
       <div className='grid md:grid-cols-2 gap-6'>
         <div>
-          <h3 className='text-xl font-semibold mb-4'>Billing Address</h3>
+          <h3 className='text-xl font-semibold mb-4'>{t('billing_address')}</h3>
           <form className='space-y-4' onSubmit={handlePlaceOrder}>
             <div className='grid grid-cols-2 gap-2'>
-              <h2><span className='text-red-500'>*</span> First name</h2>
-              <h2><span className='text-red-500'>*</span> Last name</h2>
-              <input type='text' name='firstName' value={formData.firstName} onChange={handleChange} placeholder='First name' className='border p-2 rounded w-full' required />
-              <input type='text' name='lastName' value={formData.lastName} onChange={handleChange} placeholder='Last name' className='border p-2 rounded w-full' required />
+              <h2><span className='text-red-500'>*</span> {t('first_name')}</h2>
+              <h2><span className='text-red-500'>*</span> {t('last_name')}</h2>
+              <input type='text' name='firstName' value={formData.firstName} onChange={handleChange} placeholder={t('first_name')} className='border p-2 rounded w-full' required />
+              <input type='text' name='lastName' value={formData.lastName} onChange={handleChange} placeholder={t('last_name')} className='border p-2 rounded w-full' required />
             </div>
             <div className='grid grid-cols-2 gap-2'>
-              <h2><span className='text-red-500'>*</span> Country / Region</h2>
-              <h2><span className='text-red-500'>*</span> Town / City</h2>
-              <input type='text' name='country' value={formData.country} onChange={handleChange} placeholder='Country / Region' className='border p-2 rounded w-full' required />
-              <input type='text' name='city' value={formData.city} onChange={handleChange} placeholder='Town / City' className='border p-2 rounded w-full' required />
+              <h2><span className='text-red-500'>*</span> {t('country_region')}</h2>
+              <h2><span className='text-red-500'>*</span> {t('town_city')}</h2>
+              <input type='text' name='country' value={formData.country} onChange={handleChange} placeholder={t('country_region')} className='border p-2 rounded w-full' required />
+              <input type='text' name='city' value={formData.city} onChange={handleChange} placeholder={t('town_city')} className='border p-2 rounded w-full' required />
             </div>
-            <h2><span className='text-red-500'>*</span> Street Address</h2>
-            <input type='text' name='streetAddress' value={formData.streetAddress} onChange={handleChange} placeholder='Street Address' className='border p-2 rounded w-full' required />
+            <h2><span className='text-red-500'>*</span> {t('street_address')}</h2>
+            <input type='text' name='streetAddress' value={formData.streetAddress} onChange={handleChange} placeholder={t('street_address')} className='border p-2 rounded w-full' required />
             <div className='grid grid-cols-2 gap-2'>
-              <h2><span className='text-red-500'>*</span> State</h2>
-              <h2><span className='text-red-500'>*</span> Zip</h2>
-              <input type='text' name='state' value={formData.state} onChange={handleChange} placeholder='State' className='border p-2 rounded w-full' required />
-              <input type='text' name='zip' value={formData.zip} onChange={handleChange} placeholder='Zip' className='border p-2 rounded w-full' required />
+              <h2><span className='text-red-500'>*</span> {t('state')}</h2>
+              <h2><span className='text-red-500'>*</span> {t('zip')}</h2>
+              <input type='text' name='state' value={formData.state} onChange={handleChange} placeholder={t('state')} className='border p-2 rounded w-full' required />
+              <input type='text' name='zip' value={formData.zip} onChange={handleChange} placeholder={t('zip')} className='border p-2 rounded w-full' required />
             </div>
             <div className='grid grid-cols-2 gap-2'>
-              <h2><span className='text-red-500'>*</span> Email Address</h2>
-              <h2><span className='text-red-500'>*</span> Phone Number</h2>
-              <input type='email' name='email' value={formData.email} onChange={handleChange} placeholder='Email address' className='border p-2 rounded w-full' required />
-              <input type='tel' name='phone' value={formData.phone} onChange={handleChange} placeholder='Phone Number' className='border p-2 rounded w-full' required />
+              <h2><span className='text-red-500'>*</span> {t('email_address')}</h2>
+              <h2><span className='text-red-500'>*</span> {t('phone_number')}</h2>
+              <input type='email' name='email' value={formData.email} onChange={handleChange} placeholder={t('email_address')} className='border p-2 rounded w-full' required />
+              <input type='tel' name='phone' value={formData.phone} onChange={handleChange} placeholder={t('phone_number')} className='border p-2 rounded w-full' required />
             </div>
 
-            <h3 className='text-xl font-semibold mt-6 mb-2'>Payment Method</h3>
+            <h3 className='text-xl font-semibold mt-6 mb-2'>{t('payment_method')}</h3>
             <div className='space-y-2'>
-              <h2><span className='text-red-500'>*</span> Payment Method</h2>
+              <h2><span className='text-red-500'>*</span> {t('payment_method')}</h2>
               <label className='flex items-center gap-2 border rounded p-2'>
                 <input type='radio' name='paymentMethod' value='PayPal' checked={formData.paymentMethod === 'PayPal'} onChange={handleChange} />
-                PayPal / Visa / Mastercard
+                {t('paypal_visa_mastercard')}
               </label>
               <label className='flex items-center gap-2 border rounded p-2'>
                 <input type='radio' name='paymentMethod' value='Bank Transfer' checked={formData.paymentMethod === 'Bank Transfer'} onChange={handleChange} />
-                Direct bank transfer
+                {t('direct_bank_transfer')}
               </label>
               <label className='flex items-center gap-2 border rounded p-2'>
                 <input type='radio' name='paymentMethod' value='COD' checked={formData.paymentMethod === 'COD'} onChange={handleChange} />
-                Cash on delivery
+                {t('cash_on_delivery')}
               </label>
               <div className='mt-3'>
-                <h2>Order notes (optional)</h2>
-                <textarea name='notes' value={formData.notes} onChange={handleChange} className='w-full border rounded h-35 p-2' placeholder='Your order notes, thoughts, feedback, etc...'></textarea>
+                <h2>{t('order_notes_optional')}</h2>
+                <textarea name='notes' value={formData.notes} onChange={handleChange} className='w-full border rounded h-35 p-2' placeholder={t('order_notes_placeholder')}></textarea>
               </div>
             </div>
             <button type='submit' className='w-full bg-green-600 text-white py-2 rounded mt-4 hover:bg-green-700 transition'>
-              Place Order
+              {t('place_order')}
             </button>
           </form>
         </div>
 
         <div>
-          <h3 className='text-xl font-semibold mb-4'>Your Order</h3>
-          <div className='space-y-4'>
-            {cartItems.map((item, index) => (
-              <div key={index} className='flex justify-between items-center border-b pb-2'>
-                <div className='flex items-center gap-2'>
-                  <img src={item.main_image} alt={item.title} className='w-12 h-12 object-cover' />
-                  <div>
-                    <p className='font-semibold'>{item.title}</p>
-                    <p className='text-sm text-gray-500'>SKU: {item.id || 'N/A'}</p>
-                  </div>
-                </div>
-                <div>
-                  <p>(x {item.quantity})</p>
-                </div>
-                <div className='text-right'>
-                  <p className='font-bold'>${(item.price * item.quantity).toFixed(2)}</p>
-                </div>
+          <h3 className='text-xl font-semibold mb-4'>{t('your_order')}</h3>
+          <div className='border rounded p-4'>
+            {cartItems.length === 0 && <p>{t('cart_is_empty')}</p>}
+            {cartItems.map((item) => (
+              <div key={item._id} className='flex justify-between mb-2'>
+                <span>{item.title} × {item.quantity}</span>
+                <span>${(Number(item.price) * Number(item.quantity)).toFixed(2)}</span>
               </div>
             ))}
+            <hr className='my-2' />
             <div className='flex justify-between font-semibold'>
-              <p>Subtotal:</p>
-              <p>${subtotal.toFixed(2)}</p>
+              <span>{t('subtotal')}</span>
+              <span>${subtotal.toFixed(2)}</span>
             </div>
-            <div className='flex justify-between'>
-              <span>Coupon Discount:</span>
-              <span> - $0.00</span>
+            <div className='flex justify-between font-semibold'>
+              <span>{t('shipping')}</span>
+              <span>${shipping.toFixed(2)}</span>
             </div>
-            <div className='flex justify-between text-sm text-gray-600'>
-              <p>Shipping:</p>
-              <p>${shipping.toFixed(2)}</p>
-            </div>
-            <div className='flex justify-between text-lg font-bold border-t pt-2'>
-              <p>Total:</p>
-              <p>${total.toFixed(2)}</p>
+            <div className='flex justify-between font-bold text-lg mt-2'>
+              <span>{t('total')}</span>
+              <span>${total.toFixed(2)}</span>
             </div>
           </div>
         </div>
       </div>
 
+      <Dialog open={openModal} onClose={handleClose}>
+        <DialogContent>
+          <h2 className='text-2xl font-semibold mb-4'>{t('order_confirmation')}</h2>
+          <p>{t('thank_you_order')} {orderInfo?.orderNumber}</p>
+          <p>{t('order_date')}: {orderInfo?.date}</p>
+          <p>{t('shipping')}: ${orderInfo?.shipping?.toFixed(2)}</p>
+          <p>{t('total')}: ${orderInfo?.total?.toFixed(2)}</p>
+          <p>{t('payment_method')}: {orderInfo?.paymentMethod}</p>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>{t('close')}</Button>
+        </DialogActions>
+      </Dialog>
+
       <Footer />
-
-      <Dialog open={openModal} onClose={handleClose} maxWidth="sm" fullWidth>
-  <DialogContent>
-    {orderInfo && (
-      <>
-        <h2 className='text-2xl font-bold mb-2'>Order Confirmation</h2>
-        <div className='flex flex-wrap justify-center items-center gap-4 mb-4'>
-          <div><b>Order Number:</b><p>{orderInfo.orderNumber}</p></div>
-          <div><b>Date:</b><p>{orderInfo.date}</p></div>
-          <div><b>Total:</b><p>${orderInfo.total.toFixed(2)}</p></div>
-          <div><b>Payment Method:</b><p>{orderInfo.paymentMethod}</p></div>
-        </div>
-
-        <hr className='my-2' />
-
-        <h2 className='text-xl font-bold mb-2'>Order Details</h2>
-        {orderInfo.shop_list.map((item, idx) => (
-          <div key={idx} className='flex items-center justify-between mb-2'>
-            <img src={item.main_image} alt={item.title} className='w-[70px] h-[70px] object-cover' />
-            <div>{item._id}</div>
-            <div>{item.title}</div>
-            <div>(x {item.quantity})</div>
-            <div>${item.price.toFixed(2)}</div>
-          </div>
-        ))}
-
-        <hr className='my-2' />
-        <div className='flex justify-between font-bold'>
-          <span>Shipping:</span> ${orderInfo.shipping.toFixed(2)}
-        </div>
-        <div className='flex justify-between font-bold'>
-          <span>Total:</span> ${orderInfo.total.toFixed(2)}
-        </div>
-
-        <div className='mt-4 text-center font-semibold'>
-          Your order is currently being processed. You will receive an order confirmation email shortly.
-        </div>
-      </>
-    )}
-  </DialogContent>
-  <DialogActions>
-    <Button component={Link} to="/profile" variant="contained" onClick={handleClose}>
-      Track your order
-    </Button>
-  </DialogActions>
-</Dialog>
-
     </div>
   );
 };

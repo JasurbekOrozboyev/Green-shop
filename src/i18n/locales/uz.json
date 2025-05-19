@@ -1,0 +1,100 @@
+{
+  "navbar": {
+    "home": "Asosiy",
+    "blog": "Blog",
+    "login": "Kirish"
+  },
+  "auth": {
+    "login": "Kirish",
+    "signup": "Ro'yxatdan o'tish",
+    "close": "Yopish",
+    "name": "Ism",
+    "surname": "Familiya",
+    "email": "Email",
+    "password": "Parol",
+    "forgot": "Parolni unutdingizmi?",
+    "loading": "Yuklanmoqda..."
+  },
+  "error": {
+    "unknown": "Noma'lum xato yuz berdi"
+  },
+   "footer": {
+    "gardenCareTitle": "Bog' parvarishi",
+    "gardenCareText": "Biz arzon va zamonaviy o'simliklar bilan ta'minlaydigan onlayn do'konmiz.",
+    "newsletterTitle": "Yangiliklarga obuna bo'lishni xohlaysizmi?",
+    "emailPlaceholder": "Email manzilingizni kiriting...",
+    "join": "Qo'shilish",
+    "newsletterText": "Biz doimo takliflar va yangiliklarni yuboramiz. Bu sizning o'simliklaringiz manbaidir.",
+    "contact": {
+      "address": "70 West Buckingham Ave. Farmingdale, NY 11735",
+      "email": "contact@greenshop.com",
+      "phone": "+88 01911 717 490"
+    },
+    "account": {
+      "title": "Mening hisobim",
+      "account": "Hisobim",
+      "address": "Manzil",
+      "wishlist": "Sevimlilar"
+    },
+    "categories": {
+      "title": "Bo'limlar",
+      "house": "Uy o'simliklari",
+      "potter": "Guldon o'simliklari",
+      "seeds": "Urumlar",
+      "small": "Kichik o'simliklar",
+      "accessories": "Aksessuarlar"
+    },
+    "social": "Ijtimoiy tarmoqlar",
+    "weAccept": "To'lov turlari",
+    "copyright": "© 2021 GreenShop. Barcha huquqlar himoyalangan."
+  },
+  "monetize_content": "Kontentingizni {{platform}} bilan monetizatsiya qiling",
+  "greenshop_description": "Greenshop - turli xil gullar: maqolalar, yozuvlar, video, suratlar, podkastlar yoki qo‘shiqlarni sotib olish, sotish, nashr qilish va monetizatsiya qilish platformasi.",
+  "my_feed": "Mening Yangiliklarim",
+  "search_placeholder": "Qidirish...",
+   "checkout": "To'lov",
+  "billing_address": "Hisob-kitob manzili",
+  "first_name": "Ism",
+  "last_name": "Familiya",
+  "country_region": "Davlat / Mintaqa",
+  "town_city": "Shahar",
+  "street_address": "Ko'cha manzili",
+  "state": "Viloyat",
+  "zip": "Pochta indeksi",
+  "email_address": "Elektron pochta",
+  "phone_number": "Telefon raqami",
+  "payment_method": "To'lov usuli",
+  "paypal_visa_mastercard": "PayPal, Visa, Mastercard",
+  "direct_bank_transfer": "To'g'ridan-to'g'ri bank o'tkazmasi",
+  "cash_on_delivery": "Naqd to'lov",
+  "order_notes_optional": "Buyurtma uchun izohlar (ixtiyoriy)",
+  "order_notes_placeholder": "Buyurtmangiz haqida izohlar, masalan yetkazib berish bo'yicha maxsus talablar.",
+  "place_order": "Buyurtmani berish",
+  "your_order": "Sizning buyurtmangiz",
+  "cart_is_empty": "Savat bo'sh.",
+  "subtotal": "Jami",
+  "shipping": "Yetkazib berish",
+  "total": "Umumiy summa",
+  "order_confirmation": "Buyurtma tasdiqlanishi",
+  "thank_you_order": "Buyurtmangiz uchun rahmat! Buyurtma raqamingiz:",
+  "order_date": "Buyurtma sanasi",
+  "order_submission_failed": "Buyurtma yuborishda xatolik yuz berdi.",
+  "error_submitting_order": "Buyurtma yuborishda xatolik",
+  "close": "Yopish",
+  "welcome": "GreenShop ga xush kelibsiz",
+  "lets_make_a_better_planet": "YAXSHIROQ <1>O'ZIMIZ</1> SAYYORANI QURAYLIK",
+  "lets_live_in_a_better_planet": "YAXSHIROQ <1>O'ZIMIZ</1> SAYYORADA YASHAYLIK",
+  "lets_observe_a_better_planet": "YAXSHIROQ <1>O'ZIMIZ</1> SAYYORANI KUZATAYLIK",
+  "shop_now": "HOZIR SAVATGA QO'SHISH",
+  "plant_shop_description": "Biz arzon va zamonaviy o'simliklarni taklif qiluvchi onlayn do'konmiz. O'z noyob shahar o'rmoningizni yaratish uchun o'simliklarimizdan foydalaning. Sevimli o'simliklaringizni buyurtma qiling!",
+  "summer_cactus_succulents": "YAZGI KAKTUS VA SUKULENTLAR",
+  "plant_shop_short_description": "Biz arzon va zamonaviy o'simliklarni taklif qiluvchi onlayn do'konmiz",
+  "find_more": "Batafsil",
+  "our_blog_posts": "Bizning Blog Postlarimiz",
+  "blog_subtitle": "Biz arzon va zamonaviy o'simliklarni taklif qiluvchi onlayn do'konmiz.",
+  "read_more": "Batafsil o'qish",
+  "blog_post_date_read_time": "12-sentabr  |  6 daqiqada o'qish",
+  "cactus_succulent_care_tips": "Kaktus va Sukulentlar Parvarishi Bo‘yicha Maslahatlar"
+
+
+}
