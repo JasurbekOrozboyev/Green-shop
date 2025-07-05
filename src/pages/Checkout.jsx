@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Footer from '../components/footer';
 import { Dialog, DialogContent, DialogActions, Button } from '@mui/material';
 import { useTranslation } from 'react-i18next';
@@ -120,6 +119,7 @@ const Checkout = () => {
 
       localStorage.removeItem('cart');
       setCartItems([]);
+      window.dispatchEvent(new Event('cartUpdated'));
 
     } catch (error) {
       console.error(t('error_submitting_order'), error);
@@ -131,60 +131,82 @@ const Checkout = () => {
   };
 
   return (
-    <div className='container max-w-[1216px] m-auto overflow-hidden pt-2'>
-      <h2 className='text-2xl font-bold border-b border-gray-400 pb-2 mb-4'>{t('checkout')}</h2>
-      <div className='grid md:grid-cols-2 gap-6'>
+    <div className='container max-w-[1216px] m-auto px-4 py-2 overflow-hidden'>
+      <h2 className='text-2xl sm:text-3xl font-bold border-b border-gray-400 pb-2 mb-4'>{t('checkout')}</h2>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'> 
+        
         <div>
           <h3 className='text-xl font-semibold mb-4'>{t('billing_address')}</h3>
           <form className='space-y-4' onSubmit={handlePlaceOrder}>
-            <div className='grid grid-cols-2 gap-2'>
-              <h2><span className='text-red-500'>*</span> {t('first_name')}</h2>
-              <h2><span className='text-red-500'>*</span> {t('last_name')}</h2>
-              <input type='text' name='firstName' value={formData.firstName} onChange={handleChange} placeholder={t('first_name')} className='border p-2 rounded w-full' required />
-              <input type='text' name='lastName' value={formData.lastName} onChange={handleChange} placeholder={t('last_name')} className='border p-2 rounded w-full' required />
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'> 
+              <div> 
+                <h2 className='mb-1'><span className='text-red-500'>*</span> {t('first_name')}</h2>
+                <input type='text' name='firstName' value={formData.firstName} onChange={handleChange} placeholder={t('first_name')} className='border p-2 rounded w-full' required />
+              </div>
+              <div>
+                <h2 className='mb-1'><span className='text-red-500'>*</span> {t('last_name')}</h2>
+                <input type='text' name='lastName' value={formData.lastName} onChange={handleChange} placeholder={t('last_name')} className='border p-2 rounded w-full' required />
+              </div>
             </div>
-            <div className='grid grid-cols-2 gap-2'>
-              <h2><span className='text-red-500'>*</span> {t('country_region')}</h2>
-              <h2><span className='text-red-500'>*</span> {t('town_city')}</h2>
-              <input type='text' name='country' value={formData.country} onChange={handleChange} placeholder={t('country_region')} className='border p-2 rounded w-full' required />
-              <input type='text' name='city' value={formData.city} onChange={handleChange} placeholder={t('town_city')} className='border p-2 rounded w-full' required />
+            
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'> 
+              <div>
+                <h2 className='mb-1'><span className='text-red-500'>*</span> {t('country_region')}</h2>
+                <input type='text' name='country' value={formData.country} onChange={handleChange} placeholder={t('country_region')} className='border p-2 rounded w-full' required />
+              </div>
+              <div>
+                <h2 className='mb-1'><span className='text-red-500'>*</span> {t('town_city')}</h2>
+                <input type='text' name='city' value={formData.city} onChange={handleChange} placeholder={t('town_city')} className='border p-2 rounded w-full' required />
+              </div>
             </div>
-            <h2><span className='text-red-500'>*</span> {t('street_address')}</h2>
-            <input type='text' name='streetAddress' value={formData.streetAddress} onChange={handleChange} placeholder={t('street_address')} className='border p-2 rounded w-full' required />
-            <div className='grid grid-cols-2 gap-2'>
-              <h2><span className='text-red-500'>*</span> {t('state')}</h2>
-              <h2><span className='text-red-500'>*</span> {t('zip')}</h2>
-              <input type='text' name='state' value={formData.state} onChange={handleChange} placeholder={t('state')} className='border p-2 rounded w-full' required />
-              <input type='text' name='zip' value={formData.zip} onChange={handleChange} placeholder={t('zip')} className='border p-2 rounded w-full' required />
+            
+            <div> 
+                <h2 className='mb-1'><span className='text-red-500'>*</span> {t('street_address')}</h2>
+                <input type='text' name='streetAddress' value={formData.streetAddress} onChange={handleChange} placeholder={t('street_address')} className='border p-2 rounded w-full' required />
             </div>
-            <div className='grid grid-cols-2 gap-2'>
-              <h2><span className='text-red-500'>*</span> {t('email_address')}</h2>
-              <h2><span className='text-red-500'>*</span> {t('phone_number')}</h2>
-              <input type='email' name='email' value={formData.email} onChange={handleChange} placeholder={t('email_address')} className='border p-2 rounded w-full' required />
-              <input type='tel' name='phone' value={formData.phone} onChange={handleChange} placeholder={t('phone_number')} className='border p-2 rounded w-full' required />
+
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'> 
+              <div>
+                <h2 className='mb-1'><span className='text-red-500'>*</span> {t('state')}</h2>
+                <input type='text' name='state' value={formData.state} onChange={handleChange} placeholder={t('state')} className='border p-2 rounded w-full' required />
+              </div>
+              <div>
+                <h2 className='mb-1'><span className='text-red-500'>*</span> {t('zip')}</h2>
+                <input type='text' name='zip' value={formData.zip} onChange={handleChange} placeholder={t('zip')} className='border p-2 rounded w-full' required />
+              </div>
+            </div>
+
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'> 
+              <div>
+                <h2 className='mb-1'><span className='text-red-500'>*</span> {t('email_address')}</h2>
+                <input type='email' name='email' value={formData.email} onChange={handleChange} placeholder={t('email_address')} className='border p-2 rounded w-full' required />
+              </div>
+              <div>
+                <h2 className='mb-1'><span className='text-red-500'>*</span> {t('phone_number')}</h2>
+                <input type='tel' name='phone' value={formData.phone} onChange={handleChange} placeholder={t('phone_number')} className='border p-2 rounded w-full' required />
+              </div>
             </div>
 
             <h3 className='text-xl font-semibold mt-6 mb-2'>{t('payment_method')}</h3>
             <div className='space-y-2'>
-              <h2><span className='text-red-500'>*</span> {t('payment_method')}</h2>
-              <label className='flex items-center gap-2 border rounded p-2'>
-                <input type='radio' name='paymentMethod' value='PayPal' checked={formData.paymentMethod === 'PayPal'} onChange={handleChange} />
+              <label className='flex items-center gap-2 border rounded p-3 w-full cursor-pointer hover:bg-gray-50 transition'> {/* p-3 va w-full qo'shdik */}
+                <input type='radio' name='paymentMethod' value='PayPal' checked={formData.paymentMethod === 'PayPal'} onChange={handleChange} className="form-radio text-green-500 focus:ring-green-500" /> {/* Stil qo'shdik */}
                 {t('paypal_visa_mastercard')}
               </label>
-              <label className='flex items-center gap-2 border rounded p-2'>
-                <input type='radio' name='paymentMethod' value='Bank Transfer' checked={formData.paymentMethod === 'Bank Transfer'} onChange={handleChange} />
+              <label className='flex items-center gap-2 border rounded p-3 w-full cursor-pointer hover:bg-gray-50 transition'> {/* p-3 va w-full qo'shdik */}
+                <input type='radio' name='paymentMethod' value='Bank Transfer' checked={formData.paymentMethod === 'Bank Transfer'} onChange={handleChange} className="form-radio text-green-500 focus:ring-green-500" />
                 {t('direct_bank_transfer')}
               </label>
-              <label className='flex items-center gap-2 border rounded p-2'>
-                <input type='radio' name='paymentMethod' value='COD' checked={formData.paymentMethod === 'COD'} onChange={handleChange} />
+              <label className='flex items-center gap-2 border rounded p-3 w-full cursor-pointer hover:bg-gray-50 transition'> {/* p-3 va w-full qo'shdik */}
+                <input type='radio' name='paymentMethod' value='COD' checked={formData.paymentMethod === 'COD'} onChange={handleChange} className="form-radio text-green-500 focus:ring-green-500" />
                 {t('cash_on_delivery')}
               </label>
               <div className='mt-3'>
-                <h2>{t('order_notes_optional')}</h2>
-                <textarea name='notes' value={formData.notes} onChange={handleChange} className='w-full border rounded h-35 p-2' placeholder={t('order_notes_placeholder')}></textarea>
+                <h2 className='mb-1'>{t('order_notes_optional')}</h2>
+                <textarea name='notes' value={formData.notes} onChange={handleChange} className='w-full border rounded h-32 p-2 focus:ring-green-500 focus:border-green-500' placeholder={t('order_notes_placeholder')}></textarea> {/* h-32 va focus stilini qo'shdik */}
               </div>
             </div>
-            <button type='submit' className='w-full bg-green-600 text-white py-2 rounded mt-4 hover:bg-green-700 transition'>
+            <button type='submit' className='w-full bg-green-600 text-white py-3 rounded mt-4 hover:bg-green-700 transition font-semibold text-lg'> {/* py-3, font-semibold, text-lg qo'shdik */}
               {t('place_order')}
             </button>
           </form>
@@ -193,41 +215,54 @@ const Checkout = () => {
         <div>
           <h3 className='text-xl font-semibold mb-4'>{t('your_order')}</h3>
           <div className='border rounded p-4'>
-            {cartItems.length === 0 && <p>{t('cart_is_empty')}</p>}
+            {cartItems.length === 0 && <p className="text-center text-gray-600 py-4">{t('cart_is_empty')}</p>} 
             {cartItems.map((item) => (
-              <div key={item._id} className='flex justify-between mb-2'>
-                <span>{item.title} × {item.quantity}</span>
-                <span>${(Number(item.price) * Number(item.quantity)).toFixed(2)}</span>
+              <div key={item._id} className='flex justify-between items-center mb-2 text-sm'> 
+                <span className='font-medium text-gray-800'>{item.title} × {item.quantity}</span>
+                <span className='font-semibold text-green-700'>${(Number(item.price) * Number(item.quantity)).toFixed(2)}</span>
               </div>
             ))}
-            <hr className='my-2' />
-            <div className='flex justify-between font-semibold'>
-              <span>{t('subtotal')}</span>
-              <span>${subtotal.toFixed(2)}</span>
-            </div>
-            <div className='flex justify-between font-semibold'>
-              <span>{t('shipping')}</span>
-              <span>${shipping.toFixed(2)}</span>
-            </div>
-            <div className='flex justify-between font-bold text-lg mt-2'>
-              <span>{t('total')}</span>
-              <span>${total.toFixed(2)}</span>
+            <hr className='my-3 border-gray-300' /> 
+            <div className='space-y-2'> 
+              <div className='flex justify-between text-base'> 
+                <span className='text-gray-700'>{t('subtotal')}</span>
+                <span className='font-semibold text-gray-900'>${subtotal.toFixed(2)}</span>
+              </div>
+              <div className='flex justify-between text-base'> 
+                <span className='text-gray-700'>{t('shipping')}</span>
+                <span className='font-semibold text-gray-900'>${shipping.toFixed(2)}</span>
+              </div>
+              <div className='flex justify-between font-bold text-xl pt-3 border-t border-gray-300 mt-2'> 
+                <span className='text-green-700'>{t('total')}</span>
+                <span className='text-green-700'>${total.toFixed(2)}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <Dialog open={openModal} onClose={handleClose}>
-        <DialogContent>
-          <h2 className='text-2xl font-semibold mb-4'>{t('order_confirmation')}</h2>
-          <p>{t('thank_you_order')} {orderInfo?.orderNumber}</p>
-          <p>{t('order_date')}: {orderInfo?.date}</p>
-          <p>{t('shipping')}: ${orderInfo?.shipping?.toFixed(2)}</p>
-          <p>{t('total')}: ${orderInfo?.total?.toFixed(2)}</p>
-          <p>{t('payment_method')}: {orderInfo?.paymentMethod}</p>
+      <Dialog open={openModal} onClose={handleClose} maxWidth="sm" fullWidth> 
+        <DialogContent className="p-6 text-center"> 
+          <h2 className='text-3xl font-bold mb-4 text-green-600'>{t('order_confirmation')}</h2> 
+          <p className='text-lg mb-2'>{t('thank_you_order')} <span className="font-semibold text-green-700">#{orderInfo?.orderNumber}</span></p>
+          <p className='text-md text-gray-700 mb-1'>{t('order_date')}: <span className="font-medium">{orderInfo?.date}</span></p>
+          <p className='text-md text-gray-700 mb-1'>{t('shipping')}: <span className="font-medium">${orderInfo?.shipping?.toFixed(2)}</span></p>
+          <p className='text-md text-gray-700 mb-1'>{t('total')}: <span className="font-medium">${orderInfo?.total?.toFixed(2)}</span></p>
+          <p className='text-md text-gray-700 mb-4'>{t('payment_method')}: <span className="font-medium">{orderInfo?.paymentMethod}</span></p>
+          
+          <h3 className="text-xl font-semibold mb-2">{t('ordered_items')}</h3>
+          <ul className="text-left space-y-1 max-h-40 overflow-y-auto mb-4 border p-2 rounded bg-gray-50"> 
+            {orderInfo?.shop_list?.map((item, idx) => (
+              <li key={idx} className="flex justify-between text-sm">
+                <span>{item.title} x {item.quantity}</span>
+                <span>${(item.price * item.quantity).toFixed(2)}</span>
+              </li>
+            ))}
+          </ul>
+
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>{t('close')}</Button>
+        <DialogActions className="justify-center pb-4">
+          <Button onClick={handleClose} variant="contained" sx={{ backgroundColor: '#46A358', '&:hover': { backgroundColor: '#39a84a' } }}>{t('close')}</Button>
         </DialogActions>
       </Dialog>
 
