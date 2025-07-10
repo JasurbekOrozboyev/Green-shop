@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Link from "./link";
 import { useTranslation } from 'react-i18next';
 
 function SignInUp({ closeModal }) {
@@ -55,7 +54,7 @@ function SignInUp({ closeModal }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-opacity-30 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-opacity-30 bg-gray-300 flex items-center justify-center z-50">
       <div className="border border-gray-300 bg-white rounded-lg w-full max-w-md p-6 relative">
         <div className="flex justify-center mb-6">
           <button
@@ -73,7 +72,7 @@ function SignInUp({ closeModal }) {
           </button>
           <button
             onClick={closeModal}
-            className="absolute top-2 right-4 rounded px-1 hover:text-green-500"
+            className="absolute top-2 right-4 rounded px-1 text-green-500"
           >
             x
           </button>
@@ -85,7 +84,7 @@ function SignInUp({ closeModal }) {
               <input
                 type="text"
                 placeholder={t('auth.name')}
-                className="border rounded p-2 bg-yellow-100"
+                className="border rounded p-2 bg-yellow-200 text-black"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -93,7 +92,7 @@ function SignInUp({ closeModal }) {
               <input
                 type="text"
                 placeholder={t('auth.surname')}
-                className="border rounded p-2 bg-yellow-100"
+                className="border rounded p-2 bg-yellow-200 text-black"
                 value={surname}
                 onChange={(e) => setSurname(e.target.value)}
                 required
@@ -135,7 +134,6 @@ function SignInUp({ closeModal }) {
         </form>
 
         <div>
-          <Link />
         </div>
       </div>
     </div>
