@@ -8,9 +8,10 @@ import Blog from './pages/Blog';
 import SignIn from './Auth/Sign_in';
 import Profile from './pages/profile';
 import NotFound from './pages/NotFound';
-import Products from './pages/products'
+import Products from './pages/products';
+import ProductDetail  from "../src/Home/Main/Categories/Category/ProductDetail"
 import Checkout from './pages/Checkout'
-import './i18n/i18n'; // shu qatorni qo'shing!
+import './i18n/i18n'; 
 
 
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Router>
